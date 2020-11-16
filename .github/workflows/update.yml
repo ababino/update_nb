@@ -21,9 +21,12 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - uses: actions/setup-python@v1
+      - name: Install the jupyter
+        run: pip install jupyter
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: update nb
         run: jupyter nbconvert --to notebook --execute --inplace now.ipynb
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
